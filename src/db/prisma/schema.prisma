@@ -1,0 +1,125 @@
+datasource db {
+    provider     = "postgresql"
+    url          = env("POSTGRES_PRISMA_URL")
+    relationMode = "prisma"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Account {
+    id                       String  @id @default(cuid())
+    userId                   String
+    type                     String
+    provider                 String
+    providerAccountId        String
+    refresh_token            String? @db.Text
+    expires_at               Int?
+    refresh_token_expires_in Int?
+    token_type               String?
+    scope                    String?
+    session_state            String?
+    access_token             String? @db.Text
+    id_token                 String? @db.Text
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+    @@index([userId])
+}
+
+model User {
+    id                String              @id @default(cuid())
+    name              String?
+    email             String?             @unique
+    active            Boolean             @default(true)
+    emailVerified     DateTime?
+    hashedPassword    String?
+    image             String?
+    accounts          Account[]
+    createdAt         DateTime            @default(now())
+    updatedAt         DateTime            @updatedAt
+    VerificationToken VerificationToken[]
+    Blog              Blog[]
+    Post              Post[]
+    Media             Media[]
+}
+
+model Blog {
+    id          String @id @default(cuid())
+    title       String
+    description String
+    slug        String
+    author      String
+    userId      String
+    User        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    Post        Post[]
+
+    @@unique([id, slug])
+    @@index([userId])
+}
+
+model Post {
+    id             String   @id @default(cuid())
+    title          String
+    content        String   @db.Text
+    slug           String   @unique
+    featured_image String?
+    status         String
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+    blogId         String
+    blogSlug       String
+    userId         String
+    User           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    Blog           Blog     @relation(fields: [blogId, blogSlug], references: [id, slug], onDelete: Cascade)
+    MediaItem      Media[]
+
+    @@index([userId, blogId, blogSlug])
+    // @@fulltext([content])
+    // @@fulltext([title])
+    // @@fulltext([content, title])
+}
+
+model Media {
+    id                String  @id @default(cuid())
+    asset_id          String
+    public_id         String
+    version           Int
+    version_id        String
+    signature         String
+    width             Int
+    height            Int
+    format            String
+    resource_type     String
+    created_at        String
+    bytes             Int
+    type              String
+    etag              String
+    placeholder       Boolean
+    url               String
+    secure_url        String
+    folder            String
+    access_mode       String
+    original_filename String
+    postId            String
+    userId            String
+    Post              Post    @relation(fields: [postId], references: [id], onDelete: Cascade)
+    User              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([postId, userId])
+}
+
+model VerificationToken {
+    id          Int       @id @default(autoincrement())
+    token       String    @unique
+    activatedAt DateTime?
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    userId      String
+    user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([id, token])
+    @@index([userId])
+}
