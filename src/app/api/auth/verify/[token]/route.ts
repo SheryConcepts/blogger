@@ -1,5 +1,6 @@
 import { prisma } from "@/db/prisma.client";
 import { NextRequest, NextResponse } from "next/server";
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { token: string } }
@@ -20,8 +21,6 @@ export async function GET(
         },
       },
     });
-
-    console.log(user);
 
     if (!user) throw Error("Invalid Token.");
 

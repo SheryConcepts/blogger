@@ -36,6 +36,7 @@ const schema = yup.object({
     // use "ref" to get the value of passwrod.
     .oneOf([yup.ref("password")], "Passwords don't match."),
 });
+
 type FormData = yup.InferType<typeof schema>;
 
 function Register() {
@@ -72,7 +73,7 @@ function Register() {
         return toast({
           title: "Something went wrong.",
           description:
-            "Please refresh page and try again If the issue persists, reach us at me@ziadev.com.",
+            "Please refresh page and try again If the issue persists, reach us at chsheharyarahmed@gmail.com.",
           status: "error",
         });
       }

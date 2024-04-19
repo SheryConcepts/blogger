@@ -20,7 +20,7 @@ const userRegistrationSchema = yup.object({
     ),
 });
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json();
 
@@ -65,8 +65,13 @@ export async function POST(request: NextRequest, response: NextResponse) {
       },
     });
 
-    // Send mail to user
+    try {
+      
     await sendMail(newUser, token);
+    } catch (e) {
+      throw new Error("Error while sending mail")
+    }
+    // Send mail to user
 
     return NextResponse.json({
       user: {
@@ -78,6 +83,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     if (error instanceof yup.ValidationError) {
       return NextResponse.json(formatYupErrors(error), { status: 400 });
     }
+    console.log(error, ">>>");
     return NextResponse.json(error, { status: 500 });
   }
 }

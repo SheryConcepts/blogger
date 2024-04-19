@@ -47,18 +47,6 @@ export function SocialSignIns() {
         >
           Github
         </Button>
-        <Button
-          colorScheme="red"
-          leftIcon={<Flame />}
-          width="100%"
-          isLoading={googleLoading}
-          onClick={() => {
-            setGoogleLoading(true);
-            signIn("google");
-          }}
-        >
-          Google
-        </Button>
       </Stack>
     </>
   );

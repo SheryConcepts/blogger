@@ -44,6 +44,7 @@ export default async function Home() {
             blogs, kick back, and expand your digital horizons
           </p>
           <div className="flex gap-2 ">
+            {/*
             <Button
               className="rounded-full text-sm"
               leftIcon={<MousePointerClick width={20} />}
@@ -62,6 +63,7 @@ export default async function Home() {
                 Create Blog
               </Link>
             </Button>
+           * */}
           </div>
         </div>
         <div className="flex w-1/2 items-center justify-center">
