@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
 
   console.log(session);
 
-  if (!session?.user) return null;
+  if (!session?.user) return;
 
   try {
     const user = await prisma.user.findFirst({
