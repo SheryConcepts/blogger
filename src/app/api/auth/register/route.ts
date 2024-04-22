@@ -66,10 +66,10 @@ export async function POST(request: NextRequest) {
     });
 
     try {
-      
-    await sendMail(newUser, token);
+      await sendMail(newUser, token);
     } catch (e) {
-      throw new Error("Error while sending mail")
+      console.log(e, "sendMail error>>>>>>>>>");
+      throw new Error("Error while sending mail");
     }
     // Send mail to user
 
