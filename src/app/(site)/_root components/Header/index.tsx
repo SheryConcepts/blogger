@@ -6,7 +6,7 @@ import { Spacer, Show } from "@/utils/@chakraui/wrapper";
 import { Container } from "@/components/Container";
 import { NavigationMobile } from "./NavigationMobile";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import { prisma } from "@/db/prisma.client";
 import { SearchPosts } from "@/components/SearchPosts";
 

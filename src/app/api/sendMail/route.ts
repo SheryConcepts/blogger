@@ -4,7 +4,7 @@ import { randomUUID } from "crypto";
 import { User, getServerSession } from "next-auth";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/authOptions";
 
 export async function GET(req: NextRequest) {
   try {

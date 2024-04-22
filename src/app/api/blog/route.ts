@@ -1,7 +1,7 @@
 import { prisma } from "@/db/prisma.client";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/authOptions";
 import * as yup from "yup";
 import { notAllowedBlogSlugs } from "@/utils/constants";
 

@@ -5,7 +5,7 @@ import {
   v2 as cloudinary,
 } from "cloudinary";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/authOptions";
 import { prisma } from "@/db/prisma.client";
 import { cloudinaryConfig } from "@/utils/constants";
 import streamifier from "streamifier";

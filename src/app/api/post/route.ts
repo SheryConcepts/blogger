@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/db/prisma.client";
 import { formatYupErrors } from "@/utils/formatYupErrors";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../auth/[...nextauth]/authOptions";
 import { postSchema } from "@/yupSchemas/blogPostSchema";
 
 export async function POST(req: NextRequest) {
