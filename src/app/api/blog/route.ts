@@ -5,7 +5,7 @@ import { authOptions } from "../auth/[...nextauth]/authOptions";
 import * as yup from "yup";
 import { notAllowedBlogSlugs } from "@/utils/constants";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
 
   console.log(session);
