@@ -10,7 +10,8 @@ export async function GET(req: NextRequest) {
 
   console.log(session);
 
-  if (!session?.user) return;
+  if (!session?.user)
+    return NextResponse.json({ error: "Invalid User" }, { status: 400 });
 
   try {
     const user = await prisma.user.findFirst({
@@ -31,8 +32,8 @@ export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 
-    if (!session?.user) return Error();
-
+    if (!session?.user)
+      return NextResponse.json({ error: "Invalid User" }, { status: 400 });
     const { name, email } = session.user;
 
     const user = await prisma.user.findFirst({
@@ -81,7 +82,8 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session?.user) return Error();
+    if (!session?.user)
+      return NextResponse.json({ error: "Invalid User" }, { status: 400 });
 
     const formBody = await req.json();
 
