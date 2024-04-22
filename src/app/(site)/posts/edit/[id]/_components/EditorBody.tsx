@@ -7,7 +7,7 @@ const QuillNoSSRWrapper = dynamic(() => import("react-quill"), {
   ssr: false,
   loading: () => <p>Loading ...</p>,
 });
-import { DeltaStatic, Sources } from "quill";
+import DeltaStatic, { Sources } from "quill";
 // @ts-ignore
 import ImageUploader from "quill-image-uploader";
 import BlotFormatter from "quill-blot-formatter";
@@ -22,7 +22,7 @@ const ImageFormatAttributesList = ["alt", "height", "width", "style"];
 const BaseImageFormat = Quill.import("formats/image");
 class ImageFormat extends BaseImageFormat {
   static formats(domNode: HTMLElement) {
-    return ImageFormatAttributesList.reduce(function (formats, attribute) {
+    return ImageFormatAttributesList.reduce(function(formats, attribute) {
       if (domNode.hasAttribute(attribute)) {
         // @ts-ignore
         formats[attribute] = domNode.getAttribute(attribute);
@@ -105,6 +105,7 @@ export function EditorBody() {
     source: Sources,
     editor: ReactQuill.UnprivilegedEditor
   ) {
+    // @ts-ignore
     setPostData((postData) => {
       return {
         ...postData,
@@ -117,7 +118,9 @@ export function EditorBody() {
     <div className="w-full" data-color-mode="light">
       <QuillNoSSRWrapper
         {...quillOptions}
+        // @ts-ignore
         value={content}
+        // @ts-ignore
         onChange={handleEditorChange}
       />
     </div>

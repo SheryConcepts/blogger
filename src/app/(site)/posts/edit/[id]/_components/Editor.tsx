@@ -16,7 +16,7 @@ import {
 } from "react";
 import axios, { AxiosError } from "axios";
 import { postSchema } from "@/yupSchemas/blogPostSchema";
-import { DeltaStatic } from "quill";
+import  DeltaStatic from "quill";
 
 type UpdatePostType = {
   id: string;

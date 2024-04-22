@@ -50,13 +50,14 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "@types/bcryptjs": "^2.4.2",
-    "prettier": "2.8",
-    "prettier-plugin-tailwindcss": "^0.4.1",
-    "prisma": "^5.0.0",
     "@types/node": "20.4.2",
     "@types/nodemailer": "^6.4.9",
+    "@types/quill": "^2.0.14",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
-    "@types/streamifier": "^0.1.0"
+    "@types/streamifier": "^0.1.0",
+    "prettier": "2.8",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "prisma": "^5.0.0"
   }
 }

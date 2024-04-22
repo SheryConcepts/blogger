@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
 
     const posts = await prisma.post.findMany({
       where: {
+        // @ts-ignore
         OR: [{ content: { search: query } }, { title: { search: query } }],
       },
     });
